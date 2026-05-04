@@ -59,9 +59,7 @@ class _HomePageState extends State<HomePage> {
   //modifier
   void _updateHabitName(String docId, String newName) async {
     if (newName.isNotEmpty) {
-      await FirebaseFirestore.instance.collection('habits').doc(docId).update({
-        'name': newName,
-      });
+      await habitsCollection.doc(docId).update({'name': newName});
 
       _habitController.clear();
       if (mounted) Navigator.pop(context);
@@ -77,8 +75,8 @@ class _HomePageState extends State<HomePage> {
           "Habit Tracker",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        backgroundColor: const Color.fromARGB(0, 0, 0, 0),
+        elevation: 10,
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
